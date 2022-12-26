@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
+    "graphql": "^15.3.0",
     "koa": "^2.14.1",
     "koa-graphql": "^0.12.0",
     "koa-mount": "^4.0.0",
