@@ -16,7 +16,7 @@ const objectType = new GraphQLObjectType({
 });
 
 const inputType = new GraphQLInputObjectType({
-  name: DOMAIN_NAME,
+  name: DOMAIN_NAME + "Input",
   fields: {
     name: { type: new GraphQLNonNull(GraphQLString) },
   },

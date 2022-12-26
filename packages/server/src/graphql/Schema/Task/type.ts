@@ -5,13 +5,14 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from "graphql";
+import projectTypes from "../Project/type";
 import { graphqlTypes } from "../typeDefinitions";
 import { DOMAIN_NAME } from "./definitions";
 
 const taskFields = {
   description: { type: new GraphQLNonNull(GraphQLString) },
   isCompleted: { type: new GraphQLNonNull(GraphQLBoolean) },
-  projectId: { type: new GraphQLNonNull(GraphQLString) },
+  project: { type: projectTypes.objectType },
 };
 
 const objectType = new GraphQLObjectType({
@@ -23,9 +24,10 @@ const objectType = new GraphQLObjectType({
 });
 
 const inputType = new GraphQLInputObjectType({
-  name: DOMAIN_NAME,
+  name: DOMAIN_NAME + "Input",
   fields: {
     ...taskFields,
+    project: { type: GraphQLString },
   },
 });
 

@@ -1,20 +1,19 @@
 import {
   GraphQLInputObjectType,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLScalarType,
   GraphQLString,
 } from "graphql";
+import companyTypes from "../Company/type";
 import { graphqlTypes } from "../typeDefinitions";
 import { DOMAIN_NAME } from "./definitions";
 
 const projectFields = {
   name: { type: new GraphQLNonNull(GraphQLString) },
   description: { type: new GraphQLNonNull(GraphQLString) },
-  company: { type: GraphQLString },
+  company: { type: companyTypes.objectType },
   deadline: { type: new GraphQLNonNull(new GraphQLScalarType(Date)) },
-  tasks: { type: new GraphQLList(GraphQLString) },
 };
 
 const objectType = new GraphQLObjectType({
@@ -26,9 +25,10 @@ const objectType = new GraphQLObjectType({
 });
 
 const inputType = new GraphQLInputObjectType({
-  name: DOMAIN_NAME,
+  name: DOMAIN_NAME + "Input",
   fields: {
     ...projectFields,
+    company: { type: GraphQLString },
   },
 });
 
