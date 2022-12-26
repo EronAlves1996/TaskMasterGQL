@@ -1,8 +1,8 @@
-import { GraphQLFieldConfig, GraphQLString, ThunkObjMap } from "graphql";
+import { GraphQLFieldConfigMap, GraphQLString, Thunk } from "graphql";
 import { createUser, updateUser } from "./resolvers";
 import userTypes from "./type";
 
-const mutation: ThunkObjMap<GraphQLFieldConfig<any, any, any>> = {
+const mutation: Thunk<GraphQLFieldConfigMap<any, any>> = {
   createUser: {
     type: userTypes.objectType,
     args: {

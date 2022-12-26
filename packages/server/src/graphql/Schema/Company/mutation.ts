@@ -1,11 +1,11 @@
-import { GraphQLFieldConfig, GraphQLString, ThunkObjMap } from "graphql";
+import { GraphQLFieldConfigMap, GraphQLString, Thunk } from "graphql";
 import { createCompany, updateCompany } from "./resolvers";
 import companyTypes from "./type";
 
 const type = companyTypes.objectType;
 const company = { type: companyTypes.inputType };
 
-const mutation: ThunkObjMap<GraphQLFieldConfig<any, any, any>> = {
+const mutation: Thunk<GraphQLFieldConfigMap<any, any>> = {
   createCompany: {
     type,
     args: {

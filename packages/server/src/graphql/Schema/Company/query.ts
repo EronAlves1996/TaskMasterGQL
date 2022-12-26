@@ -1,13 +1,13 @@
 import {
-  GraphQLFieldConfig,
+  GraphQLFieldConfigMap,
   GraphQLList,
   GraphQLString,
-  ThunkObjMap,
+  Thunk,
 } from "graphql";
 import { getCompanies, getCompany } from "./resolvers";
 import companyTypes from "./type";
 
-const query: ThunkObjMap<GraphQLFieldConfig<any, any, any>> = {
+const query: Thunk<GraphQLFieldConfigMap<any, any>> = {
   getCompany: {
     type: companyTypes.objectType,
     args: {

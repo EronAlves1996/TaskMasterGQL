@@ -1,14 +1,13 @@
 import {
-  GraphQLFieldConfig,
+  GraphQLFieldConfigMap,
   GraphQLList,
   GraphQLString,
-  ThunkObjMap,
+  Thunk,
 } from "graphql";
-import db from "./db";
 import { getUser, getUsers } from "./resolvers";
 import userTypes from "./type";
 
-const query: ThunkObjMap<GraphQLFieldConfig<any, any, any>> = {
+const query: Thunk<GraphQLFieldConfigMap<any, any>> = {
   getUser: {
     type: userTypes.objectType,
     args: {
