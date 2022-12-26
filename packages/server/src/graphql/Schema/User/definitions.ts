@@ -1,1 +1,1 @@
-export const DOMAIN_NAME = "task";
+export const DOMAIN_NAME = "user";
