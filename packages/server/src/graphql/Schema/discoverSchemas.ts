@@ -5,11 +5,10 @@ export function discoverSchemas() {
   const schemaHashMap = new Map();
   const files = fs.readdirSync(path.resolve(__dirname));
   files
-    .filter((file) => !file.endsWith(".js"))
+    .filter((file) => !(file.endsWith(".js") || file.endsWith(".map")))
     .forEach((file) => {
-      schemaHashMap.set(file, file + "/index");
+      console.log("Discovered schema with name " + file);
+      schemaHashMap.set(file, "./Schema/" + file + "/index");
     });
   return schemaHashMap;
 }
-
-console.log(discoverSchemas());
