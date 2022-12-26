@@ -5,12 +5,13 @@ import {
   GraphQLString,
 } from "graphql";
 import { graphqlTypes } from "../typeDefinitions";
-import { DOMAIN_NAME } from "./definitions";
+
+const DOMAIN_NAME = "company";
 
 const objectType = new GraphQLObjectType({
   name: DOMAIN_NAME,
   fields: {
-    id: { type: new GraphQLNonNull(GraphQLString) },
+    _id: { type: new GraphQLNonNull(GraphQLString) },
     name: { type: new GraphQLNonNull(GraphQLString) },
   },
 });
@@ -22,9 +23,9 @@ const inputType = new GraphQLInputObjectType({
   },
 });
 
-const toExpose: graphqlTypes = {
+const companyTypes: graphqlTypes = {
   objectType,
   inputType,
 };
 
-export default toExpose;
+export default companyTypes;
