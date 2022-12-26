@@ -1,0 +1,19 @@
+{
+  "name": "taskmastergql",
+  "version": "1.0.0",
+  "description": "An app for project management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EronAlves1996/TaskMasterGQL.git"
+  },
+  "author": "Eron Alves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EronAlves1996/TaskMasterGQL/issues"
+  },
+  "homepage": "https://github.com/EronAlves1996/TaskMasterGQL#readme"
+}
