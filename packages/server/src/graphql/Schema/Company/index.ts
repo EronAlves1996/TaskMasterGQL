@@ -1,3 +1,5 @@
-export * as companyType from "./type";
-export * as companyQuery from "./query";
-export * as companyMutation from "./mutation";
+import * as type from "./type";
+import * as query from "./query";
+import * as mutation from "./mutation";
+
+export { type, query, mutation };
