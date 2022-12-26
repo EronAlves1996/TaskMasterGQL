@@ -5,8 +5,7 @@ import {
   GraphQLString,
 } from "graphql";
 import { graphqlTypes } from "../typeDefinitions";
-
-const DOMAIN_NAME = "company";
+import { DOMAIN_NAME } from "./definitions";
 
 const objectType = new GraphQLObjectType({
   name: DOMAIN_NAME,
