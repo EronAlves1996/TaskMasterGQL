@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/EronAlves1996/TaskMasterGQL/issues"
   },
-  "homepage": "https://github.com/EronAlves1996/TaskMasterGQL#readme"
+  "homepage": "https://github.com/EronAlves1996/TaskMasterGQL#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "koa": "^2.14.1"
+  }
 }
