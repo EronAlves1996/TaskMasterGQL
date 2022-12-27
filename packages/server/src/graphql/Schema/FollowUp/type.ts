@@ -1,12 +1,11 @@
 import {
   GraphQLInputObjectType,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLScalarType,
   GraphQLString,
 } from "graphql";
 import projectTypes from "../Project/type";
+import { graphqlDate } from "../typeDefinitions";
 import userTypes from "../User/type";
 import { DOMAIN_NAME } from "./definitions";
 
@@ -21,7 +20,7 @@ const objectType = new GraphQLObjectType({
   fields: {
     _id: { type: new GraphQLNonNull(GraphQLString) },
     ...followUpFields,
-    date: { type: new GraphQLScalarType(Date) },
+    date: { type: graphqlDate },
   },
 });
 

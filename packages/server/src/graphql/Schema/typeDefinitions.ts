@@ -1,4 +1,8 @@
-import { GraphQLInputObjectType, GraphQLObjectType } from "graphql";
+import {
+  GraphQLInputObjectType,
+  GraphQLObjectType,
+  GraphQLScalarType,
+} from "graphql";
 
 export interface graphqlTypes {
   objectType: GraphQLObjectType;
@@ -40,3 +44,5 @@ export interface followUp {
   project: Project;
   user: User;
 }
+
+export const graphqlDate = new GraphQLScalarType(Date);
