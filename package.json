@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/EronAlves1996/TaskMasterGQL#readme",
   "workspaces": [
-    "packages/server"
+    "packages/server",
+    "packages/web"
   ]
 }
