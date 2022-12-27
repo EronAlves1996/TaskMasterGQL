@@ -32,3 +32,11 @@ export interface User {
   company: Company;
   projects: Project[];
 }
+
+export interface followUp {
+  _id?: string;
+  comment: string;
+  date: Date;
+  project: Project;
+  user: User;
+}
