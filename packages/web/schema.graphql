@@ -1,0 +1,101 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+type company {
+  _id: String!
+  name: String!
+}
+
+input companyInput {
+  name: String!
+}
+
+scalar Date
+
+type followUp {
+  _id: String!
+  comment: String!
+  project: project!
+  user: user!
+  date: Date
+}
+
+input followUpInput {
+  comment: String!
+  project: String!
+  user: String!
+}
+
+type Mutation {
+  createCompany(company: companyInput): company
+  updateCompany(_id: String, company: companyInput): company
+  createFollowUp(user: followUpInput): followUp
+  updateFollowUp(_id: String, followUp: followUpInput): followUp
+  createProject(project: projectInput): project
+  updateProject(_id: String, project: projectInput): project
+  createTask(task: taskInput): task
+  updateTask(_id: String, task: taskInput): task
+  createUser(user: userInput): user
+  updateUser(_id: String, user: userInput): user
+}
+
+type project {
+  _id: String!
+  name: String!
+  description: String!
+  company: company
+  deadline: Date!
+}
+
+input projectInput {
+  name: String!
+  description: String!
+  company: String
+  deadline: Date!
+}
+
+type Query {
+  getCompany(_id: String): company
+  getCompanies: [company]
+  getFollowUp(_id: String): followUp
+  getFollowUps: [followUp]
+  getProject(_id: String): project
+  getProjects: [project]
+  getProjectsByCompany(companyId: String): [project]
+  getTask(_id: String): task
+  getTasks: [task]
+  getTasksByCompany(companyId: String): [task]
+  getTasksByProject(projectId: String): [task]
+  getUser(_id: String): user
+  getUsers: [user]
+}
+
+type task {
+  _id: String!
+  description: String!
+  isCompleted: Boolean!
+  project: project
+}
+
+input taskInput {
+  description: String!
+  isCompleted: Boolean!
+  project: String
+}
+
+type user {
+  _id: String!
+  name: String!
+  company: company
+  projects: [project]
+}
+
+input userInput {
+  name: String!
+  company: String
+  projects: [String]
+}
+
