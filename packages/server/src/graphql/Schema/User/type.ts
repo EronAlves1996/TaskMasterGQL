@@ -12,6 +12,8 @@ import { DOMAIN_NAME } from "./definitions";
 const userFields = {
   name: { type: new GraphQLNonNull(GraphQLString) },
   company: { type: companyTypes.objectType },
+  email: { type: new GraphQLNonNull(GraphQLString) },
+  password: { type: new GraphQLNonNull(GraphQLString) },
   projects: { type: new GraphQLList(projectTypes.objectType) },
 };
 

@@ -1,5 +1,6 @@
 import { GraphQLFieldResolver } from "graphql";
 import db from "./db";
+import { sha512 } from "js-sha512";
 
 export const createUser: GraphQLFieldResolver<any, any> = async (
   _,

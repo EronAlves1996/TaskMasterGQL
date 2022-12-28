@@ -5,6 +5,11 @@ import { DOMAIN_NAME } from "./definitions";
 const schema = new Schema({
   _id: Schema.Types.ObjectId,
   name: Schema.Types.String,
+  email: {
+    type: Schema.Types.String,
+    unique: true,
+  },
+  password: Schema.Types.String,
   company: {
     type: Schema.Types.ObjectId,
     ref: "company",
