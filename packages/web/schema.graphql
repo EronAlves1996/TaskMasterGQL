@@ -90,12 +90,16 @@ type user {
   _id: String!
   name: String!
   company: company
+  email: String!
+  password: String!
   projects: [project]
 }
 
 input userInput {
   name: String!
   company: String
+  email: String!
+  password: String!
   projects: [String]
 }
 
