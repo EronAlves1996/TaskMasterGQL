@@ -13,12 +13,14 @@ import { Login } from "./pages/Login/Login";
 import { RegisterUser } from "./pages/Register/Register";
 import reportWebVitals from "./reportWebVitals";
 import relayEnvironment from "./utils/relayEnvironment";
+import { MainScreen } from "./pages/MainScreen/MainScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Login />} />
       <Route path="/register" element={<RegisterUser />} />
+      <Route path="/home" element={<MainScreen />} />
     </Route>
   )
 );
