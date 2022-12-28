@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import { config } from "../../config";
 import { Buffer } from "buffer";
+import { CtxType } from "../App/App";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const [user, setUser] = useOutletContext<CtxType>();
 
   const makeLogin = () => {
     const credentials = email + ":" + password;
@@ -17,14 +24,18 @@ export function Login() {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        authentication: buffer.toString("base64"),
+        authorization: buffer.toString("base64"),
       },
+      method: "POST",
     })
       .then((res) => {
         if (res.status === 200) return res.json();
         throw new Error("Unsuccessful login");
       })
-      .then((json) => console.log(json))
+      .then((json) => {
+        setUser(json);
+        navigate("/home");
+      })
       .catch((err) =>
         navigate("/", { state: { msg: "Usuário ou Senha incorretos" } })
       );
