@@ -4,7 +4,12 @@ import {
   GraphQLString,
   Thunk,
 } from "graphql";
-import { getProject, getProjects, getProjectsByCompany } from "./resolvers";
+import {
+  getProject,
+  getProjects,
+  getProjectsByCompany,
+  getProjectsById,
+} from "./resolvers";
 import projectTypes from "./type";
 
 const query: Thunk<GraphQLFieldConfigMap<any, any>> = {
@@ -14,6 +19,13 @@ const query: Thunk<GraphQLFieldConfigMap<any, any>> = {
       _id: { type: GraphQLString },
     },
     resolve: getProject,
+  },
+  getProjectsById: {
+    type: new GraphQLList(projectTypes.objectType),
+    args: {
+      _ids: { type: new GraphQLList(GraphQLString) },
+    },
+    resolve: getProjectsById,
   },
   getProjects: {
     type: new GraphQLList(projectTypes.objectType),

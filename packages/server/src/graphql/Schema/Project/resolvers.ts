@@ -23,3 +23,8 @@ export const getProjectsByCompany: GraphQLFieldResolver<any, any, any> = async (
   _,
   { companyId }
 ) => await db.findByCompany(companyId);
+
+export const getProjectsById: GraphQLFieldResolver<any, any, any> = async (
+  _,
+  { _ids }
+) => await db.findAllById(_ids);

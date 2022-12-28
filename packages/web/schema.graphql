@@ -63,6 +63,7 @@ type Query {
   getFollowUp(_id: String): followUp
   getFollowUps: [followUp]
   getProject(_id: String): project
+  getProjectsById(_ids: [String]): [project]
   getProjects: [project]
   getProjectsByCompany(companyId: String): [project]
   getTask(_id: String): task
