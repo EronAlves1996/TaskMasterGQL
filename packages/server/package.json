@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/EronAlves1996/TaskMasterGQL#readme",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.0",
     "@types/koa": "^2.13.5",
     "@types/koa-mount": "^4.0.2",
     "typescript": "^4.9.4"
@@ -26,6 +27,7 @@
     "dotenv": "^16.0.3",
     "graphql": "^15.3.0",
     "js-sha512": "^0.8.0",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.14.1",
     "koa-graphql": "^0.12.0",
     "koa-mount": "^4.0.0",

@@ -26,28 +26,37 @@ const userModel = model(DOMAIN_NAME, schema);
 
 const findById = async (id: string) =>
   (await userModel.findById(id).populate(["company", "projects"])).toObject();
+
 const findAll = async () =>
   (await userModel.find().populate(["company", "projects"])).map((entries) =>
     entries.toObject()
   );
+
 const create = async (user: User) => {
   const userToSave = new userModel({ ...user, _id: new Types.ObjectId() });
   return (await userToSave.save()).toObject();
 };
+
 const update = async (_id: string, user: User) => {
   await userModel.updateOne({ _id }, user);
   return await findById(_id);
 };
+
 const findByCompany = async (companyId: string) =>
   await userModel
     .find({
       company: companyId,
     })
     .populate("company", "projects");
+
 const findByProject = async (projectId: string) =>
   await userModel
     .find({ projects: [projectId] })
     .populate("company", "projects");
+
+const findByEmailAndPassword = async (email: string, password: string) => {
+  return await userModel.find({ email, password });
+};
 
 export default {
   findById,
@@ -56,4 +65,5 @@ export default {
   update,
   findByCompany,
   findByProject,
+  findByEmailAndPassword,
 };
