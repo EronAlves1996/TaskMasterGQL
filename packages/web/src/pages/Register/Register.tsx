@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { graphql } from "babel-plugin-relay/macro";
+import { useMutation } from "react-relay";
+import { useNavigate } from "react-router-dom";
 
 export function RegisterUser() {
   const [name, setName] = useState("");
@@ -8,11 +11,25 @@ export function RegisterUser() {
     disabled: true,
     msg: "Senhas não conferem",
   });
+  const [err, setErr] = useState("");
 
-  const register = () => {};
+  const navigate = useNavigate();
+
+  const [commitMutation, isMutationInFlight] = useMutation(graphql`
+    mutation RegisterUserQuery(
+      $name: String!
+      $email: String!
+      $password: String!
+    ) {
+      createUser(user: { name: $name, email: $email, password: $password }) {
+        _id
+      }
+    }
+  `);
 
   return (
     <div>
+      {err && <p>{err}</p>}
       <form>
         <label>Seu Nome</label>
         <input
@@ -44,7 +61,27 @@ export function RegisterUser() {
         {matchPassword.disabled && <p>{matchPassword.msg}</p>}
         <button
           type="button"
-          disabled={matchPassword.disabled && !(name && email && password)}
+          disabled={
+            matchPassword.disabled ||
+            !(name && email && password) ||
+            isMutationInFlight
+          }
+          onClick={() =>
+            commitMutation({
+              variables: {
+                email,
+                password,
+                name,
+              },
+              onCompleted: () =>
+                navigate("/", {
+                  state: { msg: "Usuário registrado com sucesso!" },
+                }),
+              onError: (err) => {
+                setErr(err.message);
+              },
+            })
+          }
         >
           Registrar
         </button>
