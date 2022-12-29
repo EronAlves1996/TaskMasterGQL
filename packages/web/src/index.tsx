@@ -1,5 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
+import { RelayEnvironmentProvider } from "react-relay/hooks";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -7,13 +8,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import { RelayEnvironmentProvider } from "react-relay/hooks";
+import { AccountSettings } from "./pages/AccountSettings/AccountSettings";
 import App from "./pages/App/App";
 import { Login } from "./pages/Login/Login";
+import { MainScreen } from "./pages/MainScreen/MainScreen";
 import { RegisterUser } from "./pages/Register/Register";
 import reportWebVitals from "./reportWebVitals";
 import relayEnvironment from "./utils/relayEnvironment";
-import { MainScreen } from "./pages/MainScreen/MainScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index element={<Login />} />
       <Route path="/register" element={<RegisterUser />} />
       <Route path="/home" element={<MainScreen />} />
+      <Route path="/conta" element={<AccountSettings />} />
     </Route>
   )
 );
@@ -31,9 +33,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <RelayEnvironmentProvider environment={relayEnvironment}>
-      <Suspense fallback={<div>Carregando...</div>}>
-        <RouterProvider router={router} />
-      </Suspense>
+      <RouterProvider router={router} />
     </RelayEnvironmentProvider>
   </React.StrictMode>
 );

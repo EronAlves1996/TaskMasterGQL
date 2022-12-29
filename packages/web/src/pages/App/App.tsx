@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 interface User {
   _id?: string;
@@ -19,7 +20,13 @@ export type CtxType = [
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
-  return <Outlet context={[user, setUser]} />;
+  return (
+    <ErrorBoundary fallback={<p>Algo deu errado</p>}>
+      <Suspense fallback={<p>Carregando...</p>}>
+        <Outlet context={[user, setUser]} />
+      </Suspense>
+    </ErrorBoundary>
+  );
 }
 
 export default App;

@@ -1,38 +1,38 @@
 import { graphql } from "babel-plugin-relay/macro";
+import { Suspense } from "react";
 import { useLazyLoadQuery } from "react-relay";
-import { useOutletContext } from "react-router-dom";
-import { CtxType } from "../App/App";
-import { ProjectInfo } from "./Project";
+import { Link } from "react-router-dom";
 import { MainScreenQuery } from "./__generated__/MainScreenQuery.graphql";
-import { ProjectFragment_data$key } from "./__generated__/ProjectFragment_data.graphql";
 
 export function MainScreen() {
-  const [user, setUser] = useOutletContext<CtxType>();
-
   const query = useLazyLoadQuery<MainScreenQuery>(
     graphql`
-      query MainScreenQuery($company: String, $projects: [String]) {
-        getCompany(_id: $company) {
+      query MainScreenQuery {
+        allUsers {
+          id
           name
-        }
-        getProjectsById(_ids: $projects) {
-          ...ProjectFragment_data
+          email
         }
       }
     `,
-    { company: user?.company, projects: user?.projects }
+    {}
   );
+
+  const { allUsers } = query;
 
   return (
     <>
-      <section className="company">
-        <h3>{query.getCompany?.name}</h3>
-      </section>
-      <section className="projects">
-        {query.getProjectsById?.map((proj) => (
-          <ProjectInfo project={proj as ProjectFragment_data$key} />
-        ))}
-      </section>
+      <Link to={"/conta"}>Minha conta</Link>
+      <Suspense fallback={<p>Carregando...</p>}>
+        <div>
+          {allUsers?.map((user) => (
+            <div key={user?.id}>
+              <p>{user?.id}</p>
+              <p>{user?.name}</p>
+            </div>
+          ))}
+        </div>
+      </Suspense>
     </>
   );
 }
