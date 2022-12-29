@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<94ea295ac6f83c2735d450473f44834c>>
+ * @generated SignedSource<<48b655e7b16233828230694d99b2a477>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,17 +9,12 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-import { FragmentRefs } from "relay-runtime";
-export type MainScreenQuery$variables = {
-  company?: string | null;
-  projects?: ReadonlyArray<string | null> | null;
-};
+export type MainScreenQuery$variables = {};
 export type MainScreenQuery$data = {
-  readonly getCompany: {
+  readonly allUsers: ReadonlyArray<{
+    readonly email: string;
+    readonly id: string | null;
     readonly name: string;
-  } | null;
-  readonly getProjectsById: ReadonlyArray<{
-    readonly " $fragmentSpreads": FragmentRefs<"ProjectFragment_data">;
   } | null> | null;
 };
 export type MainScreenQuery = {
@@ -30,122 +25,66 @@ export type MainScreenQuery = {
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "company"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "projects"
-  }
-],
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v2 = {
-  "alias": null,
-  "args": [
-    {
-      "kind": "Variable",
-      "name": "_id",
-      "variableName": "company"
-    }
-  ],
-  "concreteType": "company",
-  "kind": "LinkedField",
-  "name": "getCompany",
-  "plural": false,
-  "selections": [
-    (v1/*: any*/)
-  ],
-  "storageKey": null
-},
-v3 = [
-  {
-    "kind": "Variable",
-    "name": "_ids",
-    "variableName": "projects"
+    "alias": null,
+    "args": null,
+    "concreteType": "User",
+    "kind": "LinkedField",
+    "name": "allUsers",
+    "plural": true,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "name",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "email",
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
   }
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "MainScreenQuery",
-    "selections": [
-      (v2/*: any*/),
-      {
-        "alias": null,
-        "args": (v3/*: any*/),
-        "concreteType": "project",
-        "kind": "LinkedField",
-        "name": "getProjectsById",
-        "plural": true,
-        "selections": [
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "ProjectFragment_data"
-          }
-        ],
-        "storageKey": null
-      }
-    ],
+    "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Operation",
     "name": "MainScreenQuery",
-    "selections": [
-      (v2/*: any*/),
-      {
-        "alias": null,
-        "args": (v3/*: any*/),
-        "concreteType": "project",
-        "kind": "LinkedField",
-        "name": "getProjectsById",
-        "plural": true,
-        "selections": [
-          (v1/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "description",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "deadline",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ]
+    "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "20ba27ab5985708d121790f564d060a7",
+    "cacheID": "2e7c8e5722817318f2546328ca5ddc29",
     "id": null,
     "metadata": {},
     "name": "MainScreenQuery",
     "operationKind": "query",
-    "text": "query MainScreenQuery(\n  $company: String\n  $projects: [String]\n) {\n  getCompany(_id: $company) {\n    name\n  }\n  getProjectsById(_ids: $projects) {\n    ...ProjectFragment_data\n  }\n}\n\nfragment ProjectFragment_data on project {\n  name\n  description\n  deadline\n}\n"
+    "text": "query MainScreenQuery {\n  allUsers {\n    id\n    name\n    email\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "8d6a6bfe7428a8fc7dbec9d0390b31be";
+(node as any).hash = "75e689f82cb646bc10376e1b6300b7c4";
 
 export default node;

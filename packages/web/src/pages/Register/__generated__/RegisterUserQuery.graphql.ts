@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7ede9aeb8a2cd2e74ab53d7e4207d1b1>>
+ * @generated SignedSource<<01bee4317762e53f8938c413e77dc1f3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type RegisterUserQuery$variables = {
 };
 export type RegisterUserQuery$data = {
   readonly createUser: {
-    readonly _id: string;
+    readonly id: string | null;
   } | null;
 };
 export type RegisterUserQuery = {
@@ -66,7 +66,7 @@ v3 = [
         "name": "user"
       }
     ],
-    "concreteType": "user",
+    "concreteType": "User",
     "kind": "LinkedField",
     "name": "createUser",
     "plural": false,
@@ -75,7 +75,7 @@ v3 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "_id",
+        "name": "id",
         "storageKey": null
       }
     ],
@@ -108,16 +108,16 @@ return {
     "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "a3ee42bcaa9cd380c7ea8bb981f17890",
+    "cacheID": "dbc387e933e2757be0fd4294815795f0",
     "id": null,
     "metadata": {},
     "name": "RegisterUserQuery",
     "operationKind": "mutation",
-    "text": "mutation RegisterUserQuery(\n  $name: String!\n  $email: String!\n  $password: String!\n) {\n  createUser(user: {name: $name, email: $email, password: $password}) {\n    _id\n  }\n}\n"
+    "text": "mutation RegisterUserQuery(\n  $name: String!\n  $email: String!\n  $password: String!\n) {\n  createUser(user: {name: $name, email: $email, password: $password}) {\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b91e00bb325f85d68577c90e3955e31c";
+(node as any).hash = "38bf5850440a807d9d242f2899e91714";
 
 export default node;
