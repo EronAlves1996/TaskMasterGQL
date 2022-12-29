@@ -1,9 +1,10 @@
 package io.eronalves1996.server.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.leangen.graphql.annotations.GraphQLNonNull;
-import nonapi.io.github.classgraph.json.Id;
 
 @Document
 public class User {
@@ -13,6 +14,7 @@ public class User {
     @GraphQLNonNull
     private String name;
     @GraphQLNonNull
+    @Indexed(unique = true)
     private String email;
     @GraphQLNonNull
     private String password;

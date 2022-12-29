@@ -4,3 +4,9 @@ graphql:
       enabled: true
       target-endpoint: /graphql
       target-ws-endpoint: /ws
+server:
+  port: 3001
+spring:
+  data:
+    mongodb:
+      auto-index-creation: true
