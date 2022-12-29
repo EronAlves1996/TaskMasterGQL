@@ -2,6 +2,7 @@ package io.eronalves1996.server;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +23,10 @@ import jakarta.servlet.http.Cookie;
 public class ServerApplication {
 
 	@Value("${cookie.name}")
-	private static String COOKIE_NAME;
+	private String COOKIE_NAME;
+
+	@Autowired
+	JwtUtils jwt;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);
@@ -39,7 +43,7 @@ public class ServerApplication {
 			if (cookies != null) {
 				for (Cookie c : cookies) {
 					if (c.getName().equals(COOKIE_NAME)) {
-						String payload = JwtUtils.verify(c.getValue());
+						String payload = jwt.verify(c.getValue());
 						globalContext.setExtension("userId", payload);
 						break;
 					}

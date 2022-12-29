@@ -13,15 +13,21 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 @Component
 public class JwtUtils {
 
-    @Value("${cookie.jwt.secret)")
-    private static String COOKIE_SECRET;
+    @Value("${cookie.jwt.secret}")
+    private String COOKIE_SECRET;
 
-    public static String verify(String token) throws IllegalArgumentException, UnsupportedEncodingException {
+    public String verify(String token) throws IllegalArgumentException, UnsupportedEncodingException {
         Algorithm algorithm = Algorithm.HMAC256(COOKIE_SECRET);
         JWTVerifier require = JWT.require(algorithm).build();
         DecodedJWT verify = require.verify(token);
-        String payload = verify.getPayload();
+        String payload = verify.getSubject();
         return payload;
+    }
+
+    public String sign(String payload) throws IllegalArgumentException, UnsupportedEncodingException {
+        System.out.println(COOKIE_SECRET);
+        Algorithm algorithm = Algorithm.HMAC256(COOKIE_SECRET);
+        return JWT.create().withSubject(payload).sign(algorithm);
     }
 
 }
