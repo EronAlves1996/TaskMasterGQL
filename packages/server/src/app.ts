@@ -3,8 +3,9 @@ import { graphqlHTTP } from "koa-graphql";
 import { mountSchema } from "./graphql/mountSchema";
 import mount = require("koa-mount");
 import { loginService } from "./utils/loginService";
-import { jwtMakeToken } from "./utils/jwt";
+import { jwtMakeToken, jwtVerifyToken } from "./utils/jwt";
 import config from "./config";
+import db from "./graphql/Schema/User/db";
 
 const app = new koa();
 const DAYS = 1000 * 60 * 60 * 24;
@@ -32,6 +33,27 @@ app.use(async (ctx, next) => {
       }
     }
   } else await next();
+});
+
+app.use(async (ctx, next) => {
+  const cookies = ctx.cookies;
+  try {
+    const cookie = cookies.get(config.JWT_COOKIE_NAME);
+    if (!cookie) throw new Error("Dont have permission");
+    const userId = jwtVerifyToken(cookie);
+    const user = await db.findById(userId.toString());
+    if (!user) throw new Error("User not found");
+    ctx.body = user;
+    ctx.state.user = user;
+  } catch (err) {
+    if (err instanceof Error) {
+      ctx.body = { err: err.message };
+      // to delete invalid cookie on browser
+      cookies.set(config.JWT_COOKIE_NAME, "", { maxAge: 0 });
+      ctx.status = 403;
+    }
+  }
+  await next();
 });
 
 app.use(mount(graphqlHTTP({ graphiql: true, schema: schema })));
