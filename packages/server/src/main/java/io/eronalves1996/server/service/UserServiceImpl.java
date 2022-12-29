@@ -20,7 +20,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(String id) {
+    public User createUser(User user) {
+        return repository.save(user);
+    }
+
+    @Override
+    public User getUserById(String userId, String id) {
+        verifyUserRequesting(userId);
         Optional<User> query = repository.findById(id);
         if (query.isPresent())
             return query.get();
@@ -28,13 +34,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        return repository.save(user);
+    public List<User> getAllUsers(String userId) {
+        verifyUserRequesting(userId);
+        return repository.findAll();
     }
 
-    @Override
-    public List<User> getAllUsers() {
-        return repository.findAll();
+    private void verifyUserRequesting(String userId) {
+        Optional<User> requestedBy = repository.findById(userId);
+        if (requestedBy.isEmpty())
+            throw new RuntimeException("Forbidden");
     }
 
 }

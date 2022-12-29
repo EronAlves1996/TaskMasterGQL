@@ -6,10 +6,10 @@ import io.eronalves1996.server.model.User;
 
 public interface UserService {
 
-    User getUserById(String id);
+    User getUserById(String userId, String id);
 
     User createUser(User user);
 
-    List<User> getAllUsers();
+    List<User> getAllUsers(String userId);
 
 }
