@@ -15,11 +15,11 @@ import io.leangen.graphql.spqr.spring.autoconfigure.DefaultGlobalContext;
 
 @GraphQLApi
 @Component
-public class UserComponent {
+public class UserGraphQLController {
 
     private UserService service;
 
-    public UserComponent(UserService service) {
+    public UserGraphQLController(UserService service) {
         this.service = service;
     }
 
