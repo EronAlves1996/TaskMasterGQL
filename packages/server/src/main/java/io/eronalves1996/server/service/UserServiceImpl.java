@@ -1,13 +1,16 @@
 package io.eronalves1996.server.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.eronalves1996.server.model.User;
 import io.eronalves1996.server.repository.UserRepository;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
@@ -27,6 +30,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         return repository.save(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return repository.findAll();
     }
 
 }
