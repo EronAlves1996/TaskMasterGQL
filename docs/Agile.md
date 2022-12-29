@@ -39,3 +39,7 @@ Documentation generated with some agile definitons to help in project planning.
 - PE2 - As a Project Employee, I want to see only my tasks in a Project;
 - PE3 - As a Project Employee, I want to add follow-ups to my tasks;
 - PE4 - As a Project Employee, I want to check a task as completed;
+
+## Domains and Modelling
+
+![Domains and Modelling](./modelling.png)
