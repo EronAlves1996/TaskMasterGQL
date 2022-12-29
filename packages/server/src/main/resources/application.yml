@@ -1,0 +1,6 @@
+graphql:
+  spqr:
+    gui:
+      enabled: true
+      target-endpoint: /graphql
+      target-ws-endpoint: /ws
