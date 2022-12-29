@@ -14,8 +14,10 @@ Documentation generated with some agile definitons to help in project planning.
 
 ## User Stories
 
-- PNU1 -As a Potentially New User, I want to registrate into the system;
-- NU1 - As a New User, I want to login into the system;
+The Striked User Stories represent the elements that are already implemented. From User Story U1, every User Story have a documented workflow in the dir Workflow.
+
+- <s>PNU1 -As a Potentially New User, I want to registrate into the system;</s>
+- <s>NU1 - As a New User, I want to login into the system;</s>
 - U1 - As an User, I want to have the possibility to update my data (including password, excluding email);
 - U2 - As an User, I want to find other Users by name;
 - U3 - As an User, I want to delete my own account (and have my associated Company and Projects to be deleted too);
